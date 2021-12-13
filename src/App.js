@@ -125,7 +125,7 @@ const App = () => {
   async function mint(mintCount) {
     if (contract) {
       if (chainId === 4) {
-        const saleOpen = await contract.methods.saleOpen().call();
+        const saleOpen = await contract.methods.presaleOpen().call();
         if (saleOpen) {
           if (mintCount === 0) {
             setLessMintAmountAlert(true);
@@ -195,8 +195,8 @@ const App = () => {
       <InformationModal
         open={saleLive}
         onClose={setSaleLive}
-        title=" Sale is not live"
-        text="Sale is not live yet. Please follow our discord for the updates"
+        title=" Presale is not live"
+        text="Presale is not live yet. Please follow our discord for the updates"
       />
       <InformationModal
         open={lessMintAmountAlert}
