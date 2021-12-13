@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-no-target-blank */
 import React from "react";
 import { withStyles } from "@material-ui/core";
-// import logo from "../../assets/Logo.png";
+import logo from "../../assets/logo-2.svg";
 import Slider from "@material-ui/core/Slider";
 import logotopbrimg from "../../assets/SIDE.jpeg";
 import "./topSection.css";
@@ -57,7 +57,9 @@ const TopSection = ({
   return (
     <div className="topsection-main-wrapper">
       <div className="topsection-inner-wrapper">
-        <div className="top-logo-wrapper">The Gergs</div>
+        <div className="top-logo-wrapper">
+          <img src={logo} alt="" />
+        </div>
         <div className="topsection-bootom-box-wrapper">
           <div className="topsection-bootom-inner-box-wrapper">
             <div className="topb-left-wrapper">

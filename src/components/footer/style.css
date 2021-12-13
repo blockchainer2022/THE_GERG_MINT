@@ -3,5 +3,5 @@ footer {
   padding: 10px;
   color: white;
   text-align: center;
-  font-family: "Poppins", sans-serif;
+  font-family: inherit;
 }
