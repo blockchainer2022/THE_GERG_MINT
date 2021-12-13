@@ -3,14 +3,14 @@ import React from "react";
 import { withStyles } from "@material-ui/core";
 // import logo from "../../assets/Logo.png";
 import Slider from "@material-ui/core/Slider";
-import logotopbrimg from "../../assets/topbrimg.png";
+import logotopbrimg from "../../assets/SIDE.jpeg";
 import "./topSection.css";
 import { Button } from "@material-ui/core";
 
 const PrettoSlider = withStyles({
   // eslint-disable-next-line no-unused-vars
   root: {
-    color: "#fd4f54",
+    color: "#ff5706",
     width: "100%",
     height: 8,
     marginTop: "50px",
@@ -19,7 +19,7 @@ const PrettoSlider = withStyles({
     height: 24,
     width: 24,
     backgroundColor: "#fff",
-    border: "2px solid #fd4f54",
+    border: "2px solid #ff5706",
     marginTop: -8,
     marginLeft: -12,
     "&:focus, &:hover, &$active": {
@@ -33,7 +33,7 @@ const PrettoSlider = withStyles({
   track: {
     height: 8,
     borderRadius: 4,
-    backgroundColor: "#fd4f54",
+    backgroundColor: "#ff5706",
   },
   rail: {
     height: 8,
@@ -57,7 +57,7 @@ const TopSection = ({
   return (
     <div className="topsection-main-wrapper">
       <div className="topsection-inner-wrapper">
-        <div className="top-logo-wrapper">SHIBOKI</div>
+        <div className="top-logo-wrapper">The Gergs</div>
         <div className="topsection-bootom-box-wrapper">
           <div className="topsection-bootom-inner-box-wrapper">
             <div className="topb-left-wrapper">
@@ -86,7 +86,7 @@ const TopSection = ({
               </div>
 
               <p className="slider-below-text">
-                Buy {value} Shiboki{" "}
+                Buy {value} The Gergs{" "}
                 <span className="big-font">
                   {(value * price).toFixed(4)} Ether
                 </span>
@@ -113,7 +113,7 @@ const TopSection = ({
                   }
                   disabled={!account ? true : false}
                 >
-                  {totalSupply === 2000 ? "All Sold" : "Mint Shiboki"}
+                  {totalSupply === 2000 ? "All Sold" : "Mint The Gergs"}
                 </Button>
                 <br />
                 <span
@@ -133,7 +133,7 @@ const TopSection = ({
               </div>
 
               <p>
-                Total Shiboki Sold{" "}
+                Total The Gergs Sold{" "}
                 <span className="linebreak">
                   {totalSupply}/{maxSupply}
                 </span>
