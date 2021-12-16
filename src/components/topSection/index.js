@@ -109,6 +109,8 @@ const TopSection = ({
                       type="number"
                       value={value}
                       onChange={handleChange}
+                      max={20}
+                      min={0}
                     />
                   </div>
                   <button className="value-btn" onClick={increse}>
