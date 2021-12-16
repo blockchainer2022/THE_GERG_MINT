@@ -8,7 +8,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import InformationModal from "./components/informationModal";
 import ConfirmationLoadingPopup from "./components/confirmationLoadingPopup";
-
+import axios from "axios";
 const App = () => {
   const [chainId, setChainId] = useState(null);
   const [account, setAccount] = useState(null);
@@ -30,6 +30,7 @@ const App = () => {
   const [mintingInProgress, setMintingInProgress] = useState(false);
   const [confirmTransaction, setConfirmTransaction] = useState(false);
   const [saleLive, setSaleLive] = useState(false);
+  const [whitelist, setWhiteList] = useState(false);
 
   async function loadWeb3() {
     if (window.ethereum) {
@@ -125,43 +126,53 @@ const App = () => {
   async function mint(mintCount) {
     if (contract) {
       if (chainId === 4) {
-        const saleOpen = await contract.methods.saleOpen().call();
+        const saleOpen = await contract.methods.presaleOpen().call();
         if (saleOpen) {
-          if (mintCount === 0) {
-            setLessMintAmountAlert(true);
-          } else {
-            setConfirmTransaction(true);
-            const finalPrice = Number(price) * mintCount;
-            contract.methods
-              .mintNFT(mintCount)
-              .send({ from: account, value: finalPrice })
-              .on("transactionHash", function () {
-                setConfirmTransaction(false);
-                setMintingInProgress(true);
-              })
-              .on("confirmation", function () {
-                const el = document.createElement("div");
-                el.innerHTML =
-                  "View minted NFT on OpenSea : <a href='https://testnets.opensea.io/account '>View Now</a>";
+          const { data } = await axios.get(
+            `https://defi.mobiwebsolutionz.com/nft/gregs/verify_whitelist.php?wallet_address=${account}`
+          );
+          const isVerified = data.verified;
+          // console.log(isVerified, typeof data.verified);
+          if (isVerified) {
+            if (mintCount === 0) {
+              setLessMintAmountAlert(true);
+            } else {
+              setConfirmTransaction(true);
+              const finalPrice = Number(price) * mintCount;
+              contract.methods
+                .mintNFT(mintCount)
+                .send({ from: account, value: finalPrice })
+                .on("transactionHash", function () {
+                  setConfirmTransaction(false);
+                  setMintingInProgress(true);
+                })
+                .on("confirmation", function () {
+                  const el = document.createElement("div");
+                  el.innerHTML =
+                    "View minted NFT on OpenSea : <a href='https://testnets.opensea.io/account '>View Now</a>";
 
-                setNftMinted(true);
-                setConfirmTransaction(false);
-                setMintingInProgress(false);
-                setTimeout(() => {
-                  window.location.reload(false);
-                }, 5000);
-              })
-              .on("error", function (error, receipt) {
-                if (error.code === 4001) {
-                  setTransactionRejected(true);
+                  setNftMinted(true);
                   setConfirmTransaction(false);
                   setMintingInProgress(false);
-                } else {
-                  setTransactionFailed(true);
-                  setConfirmTransaction(false);
-                  setMintingInProgress(false);
-                }
-              });
+                  setTimeout(() => {
+                    window.location.reload(false);
+                  }, 5000);
+                })
+                .on("error", function (error, receipt) {
+                  if (error.code === 4001) {
+                    setTransactionRejected(true);
+                    setConfirmTransaction(false);
+                    setMintingInProgress(false);
+                  } else {
+                    setTransactionFailed(true);
+                    setConfirmTransaction(false);
+                    setMintingInProgress(false);
+                  }
+                });
+            }
+          } else {
+            // alert("you are not white listed");
+            setWhiteList(true);
           }
         } else {
           setSaleLive(true);
@@ -195,8 +206,14 @@ const App = () => {
       <InformationModal
         open={saleLive}
         onClose={setSaleLive}
-        title=" Sale is not live"
-        text="Sale is not live yet. Please follow our discord for the updates"
+        title=" Presale is not live"
+        text="Presale is not live yet. Please follow our discord for the updates"
+      />
+      <InformationModal
+        open={whitelist}
+        onClose={setWhiteList}
+        title="Oops"
+        text="You are not whitelisted"
       />
       <InformationModal
         open={lessMintAmountAlert}
