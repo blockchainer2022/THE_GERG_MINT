@@ -70,7 +70,7 @@ const TopSection = ({
   };
   const decrese = () => {
     if (value > 1) {
-      setValue((prev) => prev - 1);
+      setValue((prev) => Number(prev) - 1);
     }
   };
   return (
