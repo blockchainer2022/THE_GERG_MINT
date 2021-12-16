@@ -54,13 +54,13 @@ const TopSection = ({
   const handleChange = (e, newValue) => {
     const reg = /^[0-9\b]+$/;
     if (e.target.value === "" || reg.test(e.target.value)) {
-      if (e.target.value === "" || e.target.value <= 10) {
+      if (e.target.value === "" || e.target.value <= 20) {
         setValue(e.target.value);
       }
     }
   };
   const increse = () => {
-    if (value < 10) {
+    if (value < 20) {
       setValue((prev) => prev + 1);
     }
   };
