@@ -1,46 +1,46 @@
 /* eslint-disable react/jsx-no-target-blank */
 import React from "react";
-import { withStyles } from "@material-ui/core";
+// import { withStyles } from "@material-ui/core";
 import logo from "../../assets/logo-2.svg";
-import Slider from "@material-ui/core/Slider";
+// import Slider from "@material-ui/core/Slider";
 import logotopbrimg from "../../assets/SIDE.jpeg";
 import "./topSection.css";
 import { Button } from "@material-ui/core";
 
-const PrettoSlider = withStyles({
-  // eslint-disable-next-line no-unused-vars
-  root: {
-    color: "#ff5706",
-    width: "100%",
-    height: 8,
-    marginTop: "50px",
-  },
-  thumb: {
-    height: 24,
-    width: 24,
-    backgroundColor: "#fff",
-    border: "2px solid #ff5706",
-    marginTop: -8,
-    marginLeft: -12,
-    "&:focus, &:hover, &$active": {
-      boxShadow: "inherit",
-    },
-  },
-  active: {},
-  valueLabel: {
-    left: "calc(-50% + 4px)",
-  },
-  track: {
-    height: 8,
-    borderRadius: 4,
-    backgroundColor: "#ff5706",
-  },
-  rail: {
-    height: 8,
-    borderRadius: 4,
-    backgroundColor: "#fff",
-  },
-})(Slider);
+// const PrettoSlider = withStyles({
+//   // eslint-disable-next-line no-unused-vars
+//   root: {
+//     color: "#ff5706",
+//     width: "100%",
+//     height: 8,
+//     marginTop: "50px",
+//   },
+//   thumb: {
+//     height: 24,
+//     width: 24,
+//     backgroundColor: "#fff",
+//     border: "2px solid #ff5706",
+//     marginTop: -8,
+//     marginLeft: -12,
+//     "&:focus, &:hover, &$active": {
+//       boxShadow: "inherit",
+//     },
+//   },
+//   active: {},
+//   valueLabel: {
+//     left: "calc(-50% + 4px)",
+//   },
+//   track: {
+//     height: 8,
+//     borderRadius: 4,
+//     backgroundColor: "#ff5706",
+//   },
+//   rail: {
+//     height: 8,
+//     borderRadius: 4,
+//     backgroundColor: "#fff",
+//   },
+// })(Slider);
 
 const TopSection = ({
   mint,
@@ -51,8 +51,23 @@ const TopSection = ({
   maxSupply,
 }) => {
   const [value, setValue] = React.useState(1);
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
+  const handleChange = (e, newValue) => {
+    const reg = /^[0-9\b]+$/;
+    if (e.target.value === "" || reg.test(e.target.value)) {
+      if (e.target.value === "" || e.target.value <= 10) {
+        setValue(e.target.value);
+      }
+    }
+  };
+  const increse = () => {
+    if (value < 10) {
+      setValue((prev) => prev + 1);
+    }
+  };
+  const decrese = () => {
+    if (value > 1) {
+      setValue((prev) => prev - 1);
+    }
   };
   return (
     <div className="topsection-main-wrapper">
@@ -74,7 +89,7 @@ const TopSection = ({
               </div>
 
               <div className="topsection-slider-wrapper">
-                <PrettoSlider
+                {/* <PrettoSlider
                   value={value}
                   min={1}
                   step={1}
@@ -84,7 +99,22 @@ const TopSection = ({
                   defaultValue={5}
                   onChange={handleChange}
                   className="slidercustome"
-                />
+                /> */}
+                <div className="value-input-container">
+                  <button className="value-btn" onClick={decrese}>
+                    <i className="fas fa-minus"></i>
+                  </button>
+                  <div className="input-wrapper">
+                    <input
+                      type="number"
+                      value={value}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <button className="value-btn" onClick={increse}>
+                    <i className="fas fa-plus"></i>
+                  </button>
+                </div>
               </div>
 
               <p className="slider-below-text">
