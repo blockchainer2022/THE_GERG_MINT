@@ -105,13 +105,7 @@ const TopSection = ({
                     <i className="fas fa-minus"></i>
                   </button>
                   <div className="input-wrapper">
-                    <input
-                      type="number"
-                      value={value}
-                      onChange={handleChange}
-                      max={20}
-                      min={0}
-                    />
+                    <input type="text" value={value} onChange={handleChange} />
                   </div>
                   <button className="value-btn" onClick={increse}>
                     <i className="fas fa-plus"></i>
