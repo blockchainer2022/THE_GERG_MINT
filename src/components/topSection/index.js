@@ -53,15 +53,19 @@ const TopSection = ({
   const [value, setValue] = React.useState(1);
   const handleChange = (e, newValue) => {
     const reg = /^[0-9\b]+$/;
-    if (e.target.value === "" || reg.test(e.target.value)) {
-      if (e.target.value === "" || e.target.value <= 20) {
-        setValue(e.target.value);
+    if (e.target.value === "") {
+      setValue(0);
+    } else {
+      if (reg.test(Number(e.target.value))) {
+        if (Number(e.target.value) <= 20) {
+          setValue(e.target.value);
+        }
       }
     }
   };
   const increse = () => {
     if (value < 20) {
-      setValue((prev) => prev + 1);
+      setValue((prev) => Number(prev) + 1);
     }
   };
   const decrese = () => {

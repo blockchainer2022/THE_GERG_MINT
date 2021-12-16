@@ -127,7 +127,7 @@ const App = () => {
       if (chainId === 4) {
         const saleOpen = await contract.methods.saleOpen().call();
         if (saleOpen) {
-          if (mintCount === 0) {
+          if (!mintCount || mintCount === 0) {
             setLessMintAmountAlert(true);
           } else {
             setConfirmTransaction(true);
