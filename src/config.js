@@ -1,9 +1,5 @@
 export const contractAbi = [
-  {
-    inputs: [{ internalType: "string", name: "baseURI", type: "string" }],
-    stateMutability: "nonpayable",
-    type: "constructor",
-  },
+  { inputs: [], stateMutability: "nonpayable", type: "constructor" },
   {
     anonymous: false,
     inputs: [
@@ -471,13 +467,6 @@ export const contractAbi = [
   },
   {
     inputs: [],
-    name: "whitelistPresale",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [],
     name: "withdrawAll",
     outputs: [],
     stateMutability: "nonpayable",
@@ -486,4 +475,4 @@ export const contractAbi = [
 ];
 // export const contractAddress = "0xD73eE48F78da0B851892A60772acC9d0218374FE";
 // export const contractAddress = "0x25A0d5147BaF36D6DE8d85EA461162810870Dd74";
-export const contractAddress = "0xEbE7993F1086BbC9a5127b73e926d0A209145118";
+export const contractAddress = "0xC78E35bB603A8DdE6d6c62F2e1F1f040A60a0e5f";
