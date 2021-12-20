@@ -167,6 +167,13 @@ export const contractAbi = [
     type: "function",
   },
   {
+    inputs: [],
+    name: "burnUnsold",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
     inputs: [{ internalType: "address", name: "addr", type: "address" }],
     name: "checkPresaleEligiblity",
     outputs: [{ internalType: "bool", name: "", type: "bool" }],
@@ -355,7 +362,7 @@ export const contractAbi = [
   },
   {
     inputs: [
-      { internalType: "uint256", name: "_presale_reservef", type: "uint256" },
+      { internalType: "uint256", name: "_presale_reserved", type: "uint256" },
     ],
     name: "setPresaleReserved",
     outputs: [],
@@ -479,4 +486,4 @@ export const contractAbi = [
 ];
 // export const contractAddress = "0xD73eE48F78da0B851892A60772acC9d0218374FE";
 // export const contractAddress = "0x25A0d5147BaF36D6DE8d85EA461162810870Dd74";
-export const contractAddress = "0x8e86dc623DaA7231d3CF42025FbEa364d391089b";
+export const contractAddress = "0xEbE7993F1086BbC9a5127b73e926d0A209145118";
